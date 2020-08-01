@@ -52,3 +52,26 @@ a {
 a, p {
     font-family: monospace;
 }
+
+form {
+    background: linear-gradient(to right, #ffffff 0%, #ff68aa 51%, #e30868 100% );
+    color: #e30868;
+}
+
+form p {
+    width: 200px;
+    font-size: 15px;
+}
+
+form input {
+    font-size: 15px;
+    color:#7660d6;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+form textarea {
+    font-size: 15px;
+    color:#7660d6;
+    border-radius: 5px;
+}
