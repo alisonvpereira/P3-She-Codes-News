@@ -1,8 +1,9 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import NewsStory
 
-@admin.register(NewsStory)
 class NewsStoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['title', 'status', 'author','created_on', 'pub_date']
+    list_filter = ("status","author",)
+    search_fields = ['title', 'content']
+
+admin.site.register(NewsStory, NewsStoryAdmin)

@@ -12,6 +12,8 @@ class AddStoryView(generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+        # return render(request, 'users/createAccount.html', {'form': form})
+    
 
 class IndexView(generic.ListView):
     template_name = 'news/index.html'

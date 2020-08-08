@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="submit">
-</form>
+{% if user.is_authenticated %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit">
+    </form>
+    {% else %}
+        <a href="{% url 'login' %}">
+            <img src="https://i.pinimg.com/564x/82/91/9f/82919f7871b92a0ec0a19eb565676732.jpg "></img>
+        </a>
+        
+    {% endif %}
+
 {% endblock %}
