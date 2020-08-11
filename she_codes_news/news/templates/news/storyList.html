@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{user.username}}'s Story List</h2>
+    <a href="{% url 'news:newsStory' %}"><button>Write New Story</button></a>
+    {% if story_list %}
+    
+        {% for story in story_list %}
+        <div class="story-card" id="story-card-2"> 
+            <a href="{% url 'news:story' story.id %}">
+                <img src = {{ story.image_url }}>
+                    <div class="story-card-text">
+                        <h3>{{ story.title }}</h3>
+                        <h4>{{ story.pub_date }}</h4>
+                    </div>
+            </a>
+        </div>
+        {% endfor %}
+    </ul>
+        {% else %}
+            <p>You have no stories.</p>
+        {% endif %}       
+{% endblock %}

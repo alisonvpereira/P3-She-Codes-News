@@ -76,4 +76,9 @@ form textarea {
     border-radius: 5px;
 }
 
-
+button {
+    font-size: 15px;
+    color:#7660d6;
+    border-radius: 5px;
+    border: 1px solid grey;
+}

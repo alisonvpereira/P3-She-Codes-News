@@ -7,11 +7,21 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email']
-
+        fields = ['username', 'first_name', 'last_name', 'email', 'date_of_birth']
+        widgets = {
+            'date_of_birth': forms.DateInput(
+                format=('%m/%d/%Y'),
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Select a date',
+                    'type': 'date'
+                }
+            )
+        }
 
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email']
+        fields = ['first_name', 'last_name', 'date_of_birth', 'email']
+        # fields = '__all__'

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div id="story-wrapper">
+    <p>Member since:&nbsp&nbsp {{ user.date_joined }}</p>   
+
+    <p>First Name:&nbsp&nbsp&nbsp&nbsp&nbsp{{ user.first_name }} </p>
+    <p>Last Name:&nbsp&nbsp&nbsp&nbsp&nbsp    {{ user.last_name }}</p>
+    <p>Date of Birth:&nbsp   {{ user.date_of_birth }}</p>
+    <a href="{% url 'users:user_update' user.id %}" target="_parent"><button>Update</button></a>
+</div>
+</br>
+<div id="all-stories">
+    <a href="{% url 'news:storyList' %}" target="_parent"><button>My Stories</button></a>
+</div>
+
+
+{% endblock %}
