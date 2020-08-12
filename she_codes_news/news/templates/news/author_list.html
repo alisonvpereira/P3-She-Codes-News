@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Author List</h2>
+    <!-- <a href="{% url 'news:newsStory' %}"><button>Write New Story</button></a> -->
+    {% if author_list %}
+    
+        {% for author in author_list %}
+        <div id="latest-stories"> 
+
+                <!-- <img src = {{ story.image_url }}> -->
+                    <div class="story-card-text">
+                        <p>{{ author }} <a href="{% url 'users:user-detail' user.id %}">count of stories: {{user.stories.count}}</a> </p>
+                        <!-- <h4>{{ story.pub_date }}</h4> -->
+                    </div>
+            </a>
+        </div>
+        {% endfor %}
+    </ul>
+        {% else %}
+            <p>There are no authors.</p>
+        {% endif %}       
+{% endblock %}

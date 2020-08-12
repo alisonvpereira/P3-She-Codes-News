@@ -17,3 +17,4 @@ class StoryForm(ModelForm):
                 }
             )
         }
+

@@ -1,8 +1,11 @@
 from django.views import generic
-from .models import NewsStory
+from .models import NewsStory, PUBLISH
 from django.urls import reverse_lazy
 from .forms import StoryForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class AddStoryView(generic.CreateView):
     form_class = StoryForm
@@ -25,8 +28,8 @@ class IndexView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['latest_stories'] = NewsStory.objects.all().order_by('-pub_date')[:4]
-        context['all_stories'] = NewsStory.objects.all().order_by('-pub_date')
+        context['latest_stories'] = NewsStory.objects.filter(status=PUBLISH).order_by('-pub_date')[:4]
+        context['all_stories'] = NewsStory.objects.filter(status=PUBLISH).order_by('-pub_date')
         return context
 
 class StoryView(generic.DetailView):
@@ -43,4 +46,18 @@ class StoryListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         return NewsStory.objects.filter(author=self.request.user).order_by('pub_date')
 
+class StoryUpdateView(generic.UpdateView):
+    model = NewsStory
+    # form_class = CustomUserChangeForm
+    fields = '__all__'
+    template_name = 'news/story_update.html'
 
+class AuthorListView(generic.ListView):
+    model = User
+    template_name = 'news/author_list.html'
+    context_object_name = 'author_list'
+
+class AuthorDetailView(generic.DetailView):
+    model = User
+    template_name = 'users/userprofile.html'
+    context_object_name = 'user-detail'

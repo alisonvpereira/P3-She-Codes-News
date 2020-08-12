@@ -19,3 +19,4 @@ class UserUpdateView(UpdateView):
     form_class = CustomUserChangeForm
     template_name = 'users/user_update.html'
 
+

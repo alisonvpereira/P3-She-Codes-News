@@ -6,7 +6,7 @@
     {% if story_list %}
     
         {% for story in story_list %}
-        <div class="story-card" id="story-card-2"> 
+        <div id="latest-stories"> 
             <a href="{% url 'news:story' story.id %}">
                 <img src = {{ story.image_url }}>
                     <div class="story-card-text">
