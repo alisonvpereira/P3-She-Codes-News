@@ -10,7 +10,10 @@
 
                 <!-- <img src = {{ story.image_url }}> -->
                     <div class="story-card-text">
-                        <p>{{ author }} <a href="{% url 'users:user-detail' user.id %}">count of stories: {{user.stories.count}}</a> </p>
+                        <h4>{{ author.first_name }} {{ author.last_name }} {{author.username}}
+                            <a href="{% url 'users:user-detail' pk=author.id %}"> {{ author.stories.count }} Stories</a>
+                        </h4>
+                             
                         <!-- <h4>{{ story.pub_date }}</h4> -->
                     </div>
             </a>

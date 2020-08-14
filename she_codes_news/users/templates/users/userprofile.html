@@ -4,16 +4,21 @@
 {% block content %}
 
 <div id="story-wrapper">
-    <p>Member since:&nbsp&nbsp {{ user.date_joined }}</p>   
-
-    <p>First Name:&nbsp&nbsp&nbsp&nbsp&nbsp{{ user.first_name }} </p>
-    <p>Last Name:&nbsp&nbsp&nbsp&nbsp&nbsp    {{ user.last_name }}</p>
-    <p>Date of Birth:&nbsp   {{ user.date_of_birth }}</p>
-    <a href="{% url 'users:user_update' user.id %}" target="_parent"><button>Update</button></a>
+    <h2>{{ object.username }}'s Profile</h2>
+    <p>Member since:&nbsp&nbsp&nbsp {{ object.date_joined }}</p>   
+    <p>Member Number:&nbsp&nbsp   {{ object.pk }}</p>
+    <!-- <p>Author Username:&nbsp{{ object.username }}</p> -->
+    <p>First Name:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ object.first_name }} </p>
+    <p>Last Name:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    {{ object.last_name }}</p>
+    {% if object.pk == user.pk %}
+        <p>Date of Birth:&nbsp&nbsp   {{ user.date_of_birth }}</p>
+        <a href="{% url 'users:user_update' user.pk %}" target="_parent"><button>Update my profile</button></a>
+    {% endif %}
 </div>
 </br>
 <div id="all-stories">
-    <a href="{% url 'news:storyList' %}" target="_parent"><button>My Stories</button></a>
+    <a href="{% url 'news:storyList' slug=object.username %}" target="_parent"><button>{{ object.stories.count }} Stories by {{ object.username }}</button></a>
+
 </div>
 
 

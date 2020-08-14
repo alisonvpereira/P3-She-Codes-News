@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>{{user.username}}'s Story List</h2>
+
+    
     <a href="{% url 'news:newsStory' %}"><button>Write New Story</button></a>
     {% if story_list %}
-    
+    <h2>{{ story_list.0.author }}'s Published Stories</h2>
         {% for story in story_list %}
         <div id="latest-stories"> 
             <a href="{% url 'news:story' story.id %}">
@@ -18,6 +19,6 @@
         {% endfor %}
     </ul>
         {% else %}
-            <p>You have no stories.</p>
+            <p>No Published stories from {{ story.author }}.</p>
         {% endif %}       
 {% endblock %}

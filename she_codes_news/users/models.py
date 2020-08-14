@@ -26,10 +26,10 @@ class CustomUser(AbstractUser):
     #     """Returns the url to access a particular author instance."""
     #     return reverse('author_delete', args=[str(self.id)])
 
-    def __str__(self):
-        """String for representing the Model object."""
-        return f'{self.last_name}, {self.first_name}'
-
     # def __str__(self):
-    #     return self.username
+    #     """String for representing the Model object."""
+    #     return f'{self.last_name}, {self.first_name}'
+
+    def __str__(self):
+        return self.username
 

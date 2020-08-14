@@ -37,14 +37,19 @@ class StoryView(generic.DetailView):
     template_name = 'news/story.html'
     context_object_name = 'story'
 
-class StoryListView(LoginRequiredMixin, generic.ListView):
-    model = NewsStory
+class StoryListView( generic.ListView):
+    model = User
     template_name ='news/storylist.html'
     context_object_name = 'story_list'
+    slug_field = "username"
     paginate_by = 10
     
     def get_queryset(self):
-        return NewsStory.objects.filter(author=self.request.user).order_by('pub_date')
+          return NewsStory.objects.filter(author__username=self.kwargs['slug']).filter(status=PUBLISH)
+
+
+
+
 
 class StoryUpdateView(generic.UpdateView):
     model = NewsStory
@@ -57,7 +62,12 @@ class AuthorListView(generic.ListView):
     template_name = 'news/author_list.html'
     context_object_name = 'author_list'
 
-class AuthorDetailView(generic.DetailView):
-    model = User
-    template_name = 'users/userprofile.html'
-    context_object_name = 'user-detail'
+    
+    def get_queryset(self):
+        return User.objects.filter(is_superuser=0).order_by('username')
+        
+
+    
+
+
+
