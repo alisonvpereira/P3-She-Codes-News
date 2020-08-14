@@ -17,9 +17,10 @@
         {{ story.content|linebreaks }}
     </div>
 </div>
-
+{% if story.author.id == user.id %}
 <div>
     <a href="{% url 'news:story_update' story.id %}"><button>Update</button></a>
 </div>
+{% endif %}
 
 {% endblock %}
